@@ -3,21 +3,20 @@
  */
 const infer = require('../infer-license');
 const licenses = require('spdx-license-list/spdx-full');
-const assert = require('assert');
+const expect = require('chai').expect;
 
-const methodsUnderTest = Object.keys(infer).filter(function(method) { return /is.*/.test(method); } );
+const methodsUnderTest = Object.keys(infer).filter(function (method) {
+  return /is.*/.test(method);
+});
 
 function onlyOneIsTrue(list) {
   return list.filter(Boolean).length === 1;
 }
 
-function assertDefinitive(text) {
-  assert(onlyOneIsTrue(methodsUnderTest.map(function(methodName) {
-    return(infer[methodName](text));
-  })));
-}
-
-const matchers = {
+/*
+ * This maps an SPDX identifier to the method that should identify it.
+ */
+const spdxToMatchMethod = {
   'MIT': 'isMIT',
   'BSD-2-Clause': 'isBSD',
   'BSD-3-Clause': 'isBSD',
@@ -33,11 +32,26 @@ const matchers = {
   'WTFPL': 'isWTF'
 };
 
-Object.keys(matchers).forEach(function (spdx) {
-  const method = matchers[spdx];
-  console.log('Testing ' + spdx);
-  const license = licenses[spdx].license;
-  assert(infer[method](license));
-  assert.equal(infer.inferLicense(license), spdx);
-  assertDefinitive(license)
+function isXXX(license) {
+  return function (methodName) {
+    return (infer[methodName](license));
+  }
+}
+
+describe('infer-license', function () {
+  Object.keys(spdxToMatchMethod).forEach(function (spdx) {
+    describe('Support for ' + spdx, function () {
+      const matchMethodName = spdxToMatchMethod[spdx];
+      const license = licenses[spdx].license;
+
+      it('correctly identifies the license', function () {
+        expect(infer[matchMethodName](license)).to.be.ok;
+        expect(infer.inferLicense(license)).to.equal(spdx);
+      });
+
+      it('uniquely identifies the license', function () {
+        expect(onlyOneIsTrue(methodsUnderTest.map(isXXX(license)))).to.be.ok;
+      });
+    });
+  });
 });

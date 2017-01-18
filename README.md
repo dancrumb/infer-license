@@ -21,6 +21,9 @@ fs.readFile('LICENSE.md', function (err, contents) {
     console.log(infer.inferLicense(contents)); // 'MIT'
 });
 ```
+## Dependencies
+None!
+
 
 ## Testing
 Currently, this tool uses SPDX license files and, for each one, confirms that

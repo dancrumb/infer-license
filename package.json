@@ -4,7 +4,7 @@
   "description": "Infer license from text",
   "main": "infer-license.js",
   "scripts": {
-    "test": "node test/test.js"
+    "test": "mocha"
   },
   "bin": "./cli.js",
   "keywords": [
@@ -13,6 +13,9 @@
   "author": "Dan Rumney <dancrumb@gmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "chai": "^3.5.0",
+    "karma": "^1.4.0",
+    "mocha": "^3.2.0",
     "spdx-license-list": "^2.1.0"
   }
 }
