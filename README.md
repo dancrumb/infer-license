@@ -46,5 +46,5 @@ Currently, this tool can identify the following licenses
 ## API
 
 The `inferLicense` function will return the inferred SPDF identifier (where it can).
-There are a set of `isXXX` functions that will return a truthy value if the provided text conforms
-with the license of type `XXX`.
+There are a set of `is<Type>` functions that will return a truthy value if the provided text conforms
+with the license of type `<Type>`.
