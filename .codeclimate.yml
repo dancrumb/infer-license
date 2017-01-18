@@ -7,13 +7,11 @@ engines:
       - javascript
   eslint:
     enabled: true
-    channel: "eslint-3"
   fixme:
     enabled: true
 ratings:
   paths:
   - "**.js"
+  - "**.jsx"
 exclude_paths:
 - test/
-- examples/
-- docs/
