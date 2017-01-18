@@ -12,6 +12,16 @@ This is fine for humans, but not so greate for computers.
 This module can infer the appropriate license when fed the contents
 of a relevant file and return the appropriate SPDX identifier.
 
+## Example
+
+```
+const infer = require('infer-license');
+
+fs.readFile('LICENSE.md', function (err, contents) {
+    console.log(infer.inferLicense(contents)); // 'MIT'
+});
+```
+
 ## Testing
 Currently, this tool uses SPDX license files and, for each one, confirms that
 
