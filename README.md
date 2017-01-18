@@ -7,7 +7,7 @@ do not.
 
 Instead, the license is embedded in the README or in a LICENSE file.
 
-This is fine for humans, but not so greate for computers.
+This is fine for humans, but not so great for computers.
 
 This module can infer the appropriate license when fed the contents
 of a relevant file and return the appropriate SPDX identifier.
