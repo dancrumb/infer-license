@@ -41,11 +41,9 @@ function isXXX(license) {
 describe('infer-license', function () {
   Object.keys(spdxToMatchMethod).forEach(function (spdx) {
     describe('Support for ' + spdx, function () {
-      const matchMethodName = spdxToMatchMethod[spdx];
       const license = licenses[spdx].license;
 
       it('correctly identifies the license', function () {
-        expect(infer[matchMethodName](license)).to.be.ok;
         expect(infer.inferLicense(license)).to.equal(spdx);
       });
 

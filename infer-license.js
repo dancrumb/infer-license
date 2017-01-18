@@ -45,27 +45,29 @@ function isEclipse(text) {
   }
 }
 
+function identifyVersion(text, versions) {
+  return Object.keys(versions).find(function (spdx) {
+    return versions[spdx].test(text);
+  })
+}
+
 function isLGPL(text) {
   if(LGPL.test(text)) {
-    if(LGPL20.test(text)) {
-      return 'LGPL-2.0';
-    } else if (LGPL21.test(text)) {
-      return'LGPL-2.1';
-    } else if (LGPL30.test(text)) {
-      return 'LGPL-3.0';
-    }
+    return identifyVersion(text, {
+      'LGPL-2.0': LGPL20,
+      'LGPL-2.1': LGPL21,
+      'LGPL-3.0': LGPL30
+    });
   }
 }
 
 function isApache(text) {
   if(APACHE.test(text)) {
-    if(APACHE11.test(text)) {
-      return 'Apache-1.1';
-    } else if(APACHE20.test(text)) {
-      return 'Apache-2.0';
-    } else if(APACHE10.test(text)) {
-      return 'Apache-1.0';
-    }
+    return identifyVersion(text, {
+      'Apache-1.1': APACHE11,
+      'Apache-2.0': APACHE20,
+      'Apache-1.0': APACHE10
+    });
   }
 }
 
