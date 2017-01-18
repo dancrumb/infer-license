@@ -1,0 +1,18 @@
+{
+  "name": "infer-license",
+  "version": "1.0.0",
+  "description": "Infer license from text",
+  "main": "infer-license.js",
+  "scripts": {
+    "test": "node test/test.js"
+  },
+  "bin": "./cli.js",
+  "keywords": [
+    "license"
+  ],
+  "author": "Dan Rumney <dancrumb@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "spdx-license-list": "^2.1.0"
+  }
+}
