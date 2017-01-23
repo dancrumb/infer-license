@@ -1,4 +1,9 @@
 # Infer License
+[![NPM](https://nodei.co/npm/infer-license.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/infer-license/)
+
+[![Code Climate](https://codeclimate.com/github/dancrumb/infer-license/badges/gpa.svg)](https://codeclimate.com/github/dancrumb/infer-license)
+[![Build Status](https://travis-ci.org/dancrumb/infer-license.svg?branch=master)](https://travis-ci.org/dancrumb/infer-license)
+[![dependencies Status](https://david-dm.org/dancrumb/infer-license/status.svg)](https://david-dm.org/dancrumb/infer-license)
 
 Sometimes, you need to know what license a module is provided under.
 
