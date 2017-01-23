@@ -93,6 +93,21 @@ module.exports = methods = {
     } else {
       return undefined;
     }
+  },
+  findLicenseLinks: function (text) {
+    const spdxIDs = [];
+    var spdxMatch;
+    var licenseRe = /https?:\/\/(?:opensource|spdx).org\/licenses\/([^/? ]+)/g;
+    while((spdxMatch = licenseRe.exec(text)) !== null) {
+      if(spdxIDs.indexOf(spdxMatch[1]) === -1) {
+        spdxIDs.push(spdxMatch[1]);
+      }
+    }
+    if (spdxIDs.length <2) {
+      return spdxIDs[0];
+    }
+
+    return '(' + spdxIDs.join(' OR ') + ')';
   }
 };
 

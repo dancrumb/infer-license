@@ -48,8 +48,24 @@ describe('infer-license', function () {
       });
 
       it('uniquely identifies the license', function () {
+        // eslint-disable-next-line no-unused-expressions
         expect(onlyOneIsTrue(methodsUnderTest.map(isXXX(license)))).to.be.ok;
       });
     });
+  });
+});
+
+describe('findLicenseLinks', function () {
+  it('can detect a link to a single license', function () {
+    expect(infer.findLicenseLinks("https://opensource.org/licenses/MIT")).to.equal('MIT');
+    expect(infer.findLicenseLinks("https://spdx.org/licenses/MIT")).to.equal('MIT');
+  });
+  it('can detect multiple links to multiple licenses', function () {
+    expect(infer.findLicenseLinks("https://opensource.org/licenses/MIT blah blah https://spdx.org/licenses/BSD-3-Clause"))
+      .to.equal("(MIT OR BSD-3-Clause)");
+  });
+  it('can detect multiple links to the same license', function () {
+    expect(infer.findLicenseLinks("https://opensource.org/licenses/Apache-2.0 blah blah https://spdx.org/licenses/Apache-2.0"))
+      .to.equal("Apache-2.0");
   });
 });
